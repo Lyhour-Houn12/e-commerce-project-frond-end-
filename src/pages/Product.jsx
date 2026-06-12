@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useProductFilter } from "../useProductFilter";
+import { useProductFilter } from "../components/useProductFilter";
 import { useEffect } from "react";
-import { fetchCategories } from "../../store/action";
-import Loader from "../../ui/Loader";
-import Filter from "./Filter";
-import ProductCard from "../products/ProductCard";
-import Paginations from "../../ui/Paginations";
+import { fetchCategories } from "../store/action";
+import Loader from "../ui/Loader";
+import Filter from "../components/products/Filter";
+import ProductCard from "../components/products/ProductCard";
+import Paginations from "../ui/Paginations";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
+import ErrorMessage from "../ui/ErrorMessage";
 const Product = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { isLoading, errorMessage } = useSelector((state) => state.errors);
@@ -38,12 +39,7 @@ const Product = () => {
       {isLoading ? (
         <Loader />
       ) : errorMessage ? (
-        <div className="flex h-[200px] items-center justify-center">
-          <FaExclamationTriangle className="mr-2 text-3xl text-slate-800" />
-          <span className="text-lg font-medium text-slate-800">
-            {errorMessage}
-          </span>
-        </div>
+        <ErrorMessage />
       ) : (
         <div className="min-h-[700px]">
           <div className="grid gap-x-6 gap-y-6 pt-14 pb-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
