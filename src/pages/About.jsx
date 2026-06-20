@@ -58,7 +58,7 @@ const About = () => {
         </h1>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product, index) => (
-            <ProductCard product={product} key={index} about />
+            <ProductCard product={product} key={index} />
           ))}
         </div>
       </div>

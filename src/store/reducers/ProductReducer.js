@@ -1,5 +1,5 @@
 const initialProduct = {
-  products: null,
+  products: [],
   categories: null,
   pagination: {},
 };

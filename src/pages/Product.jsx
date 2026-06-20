@@ -6,7 +6,6 @@ import Loader from "../ui/Loader";
 import Filter from "../components/products/Filter";
 import ProductCard from "../components/products/ProductCard";
 import Paginations from "../ui/Paginations";
-import { FaExclamationTriangle } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import ErrorMessage from "../ui/ErrorMessage";
 const Product = () => {
@@ -26,6 +25,7 @@ const Product = () => {
     const currentPage = searchParams.get("page")
       ? Number(searchParams.get("page"))
       : 1;
+
     if (pagination?.totalPages && currentPage > pagination.totalPages) {
       const params = new URLSearchParams(searchParams);
       params.set("page", "1");
