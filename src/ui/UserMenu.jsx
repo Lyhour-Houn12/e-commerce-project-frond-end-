@@ -9,6 +9,7 @@ import { IoExitOutline } from "react-icons/io5";
 import BackDrop from "./BackDrop";
 import { logOutUser } from "../store/action";
 import toast from "react-hot-toast";
+import { RiAdminFill } from "react-icons/ri";
 
 export default function UserMenu() {
   const { user } = useSelector((user) => user.auth);
@@ -19,12 +20,16 @@ export default function UserMenu() {
   const menuId = `${id}-menu`;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const isAdmin = user && user?.roles?.includes("ROLE_ADMIN");
+  const isSeller = user && user?.roles?.includes("ROLE_SELLER");
 
   const handleLogout = () => {
     return dispatch(logOutUser(navigate, toast, user));
@@ -63,6 +68,17 @@ export default function UserMenu() {
             Order
           </MenuItem>
         </Link>
+        {(isAdmin || isSeller) && (
+          <Link to={isAdmin ? "/admin" : "/admin/products"}>
+            <MenuItem onClick={handleClose} className="flex gap-2">
+              <RiAdminFill className="text-xl" />
+              <span className="mt-1 text-[16px] font-bold">
+                {isAdmin ? "Admin Panel" : "Seller Panel"}
+              </span>
+            </MenuItem>
+          </Link>
+        )}
+
         <MenuItem onClick={handleClose} className="flex gap-2">
           <div className="bg-button-gradient flex w-full items-center gap-2 rounded-xs px-4 py-1 font-semibold text-white">
             <IoExitOutline className="text-xl" />

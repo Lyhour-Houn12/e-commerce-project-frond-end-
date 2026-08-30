@@ -34,17 +34,24 @@ const Filter = ({ categories }) => {
   useEffect(() => {
     const handler = setTimeout(() => {
       const params = new URLSearchParams(searchParams);
-      if (searchTerm) {
-        params.set("keyword", searchTerm);
+
+      const currentKeyword = params.get("keyword") || "";
+
+      if (currentKeyword === searchTerm) return;
+
+      if (searchTerm.trim()) {
+        params.set("keyword", searchTerm.trim());
       } else {
         params.delete("keyword");
       }
+
       params.set("page", "1");
+
       navigate(`${pathname}?${params.toString()}`);
     }, 700);
 
     return () => clearTimeout(handler);
-  }, [searchTerm]);
+  }, [searchTerm, searchParams, pathname, navigate]);
 
   function handleCategory(e) {
     const selectedCategory = e.target.value;

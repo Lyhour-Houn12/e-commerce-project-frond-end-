@@ -9,6 +9,14 @@ import Cart from "./pages/Cart.jsx";
 import Login from "./pages/Login.jsx";
 import PrivateRoute from "./ui/PrivateRoute.jsx";
 import Signup from "./pages/Signup.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import PaymentConfirmation from "./components/payment/PaymentConfirmation.jsx";
+import AdminLayout from "./pages/AdminLayout.jsx";
+import Dashboad from "./components/admin/dashboard/Dashboad.jsx";
+import AdminProduct from "./components/admin/products/AdminProduct.jsx";
+import Category from "./components/admin/categories/Category.jsx";
+import Seller from "./components/admin/sellers/Seller.jsx";
+import Orders from "./components/admin/orders/Orders.jsx";
 
 const App = () => {
   return (
@@ -21,9 +29,23 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-confirm" element={<PaymentConfirmation />} />
+
           <Route path="/" element={<PrivateRoute publicPage />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Signup />} />
+          </Route>
+
+          <Route path="/" element={<PrivateRoute adminOnly />}>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Dashboad />} />
+              <Route path="products" element={<AdminProduct />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="categories" element={<Category />} />
+              <Route path="sellers" element={<Seller />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

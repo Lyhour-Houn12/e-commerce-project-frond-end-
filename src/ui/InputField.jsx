@@ -5,11 +5,13 @@ const InputField = ({
   register,
   required,
   message,
+  step,
   errors,
   classname,
   min,
   value,
   placeholder,
+  readOnly,
 }) => {
   return (
     <div className="flex w-full flex-col gap-1">
@@ -22,6 +24,8 @@ const InputField = ({
       <input
         type={type}
         id={id}
+        step={step}
+        readOnly={readOnly}
         placeholder={placeholder}
         className={`${classname ? classname : ""} rounded-md border bg-transparent px-2 py-2 text-slate-800 outline-none ${errors?.[id]?.message ? "border-red-500" : "border-slate-700"}`}
         {...register(id, {

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useProductFilter } from "../components/useProductFilter";
+import { useProductFilter } from "../components/hook/useProductFilter";
 import { useEffect } from "react";
 import { fetchCategories } from "../store/action";
 import Loader from "../ui/Loader";

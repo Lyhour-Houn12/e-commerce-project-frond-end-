@@ -14,7 +14,7 @@ const Navbar = () => {
   const { cart } = useSelector((item) => item.carts);
   const numberOfCart = cart?.length ? cart?.length : 0;
   return (
-    <header className="bg-custom-gradient sticky z-50 flex h-[70px] items-center px-4 text-white sm:px-8 lg:px-14">
+    <header className="sticky top-0 z-50 flex h-[70px] items-center bg-slate-900 px-4 text-white sm:px-8 lg:px-14">
       <div className="flex w-full justify-between">
         <Link to="/" className="text-exl flex items-center font-bold">
           <FaStore className="mr-2 text-3xl" />
